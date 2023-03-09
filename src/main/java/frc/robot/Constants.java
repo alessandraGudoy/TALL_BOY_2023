@@ -15,12 +15,13 @@ public final class Constants {
     public static final double TRACK_WIDTH = 0.635; //FIXME
     public static final double WHEEL_BASE = 0.635; // FIXME
 
-    public static final double GEAR_RATIO = 5.50 / 1;
+    public static final double GEAR_RATIO = 4.71 / 1;
     public static final double STEER_GEAR_RATIO = 150 / 7; //FIXME
 
     public static final double VOLTAGE = 7.2;
 
     /* * * SWERVE DRIVE KINEMATICS * * */
+    //FIXME
     public static final SwerveDriveKinematics DRIVE_KINEMATICS = new SwerveDriveKinematics(
       // front left
       new Translation2d(WHEEL_BASE / 2, TRACK_WIDTH / 2),
@@ -35,25 +36,21 @@ public final class Constants {
     /* * * FRONT LEFT * * */
     public static final int FL_DRIVE_PORT = 1;
     public static final int FL_TURN_PORT = 5;
-    public static final int FL_ABSOLUTE_ENCODER_PORT = 9;
     public static final double FL_OFFSET = -Math.toRadians(0);
 
     /* * * BACK LEFT * * */
     public static final int BL_DRIVE_PORT = 2;
     public static final int BL_TURN_PORT = 6;
-    public static final int BL_ABSOLUTE_ENCODER_PORT = 10;
     public static final double BL_OFFSET = -Math.toRadians(0);
 
     /* * * BACK RIGHT * * */
     public static final int BR_DRIVE_PORT = 3;
     public static final int BR_TURN_PORT = 7;
-    public static final int BR_ABSOLUTE_ENCODER_PORT = 11;
     public static final double BR_OFFSET = -Math.toRadians(0);
 
     /* * * FRONT RIGHT * * */
     public static final int FR_DRIVE_PORT = 8;
     public static final int FR_TURN_PORT = 4;
-    public static final int FR_ABSOLUTE_ENCODER_PORT = 12;
     public static final double FR_OFFSET = -Math.toRadians(0);
 
     /* * * CONVERSIONS FOR ENCODERS * * */
@@ -65,7 +62,7 @@ public final class Constants {
       // 5676 / 60 * 341.88 * Math.PI
 
     /* * * MAX SPEEDS * * */
-    public static final double MAX_SPEED = 3.6576;
+    public static final double MAX_SPEED = 4.804;
       // 5676.0 / 60.0 * ((14.0 / 50.0) * (25.0 / 19.0) * (15.0 / 45.0)) *
       // 0.10033 * Math.PI; // 13.5 feet per second = 4.1148 meters per second
     public static final double MAX_ROTATION = MAX_SPEED / Math.hypot(TRACK_WIDTH / 2.0, WHEEL_BASE / 2.0);
