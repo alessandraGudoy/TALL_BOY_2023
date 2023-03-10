@@ -20,7 +20,7 @@ public class PivotJoystickCommand extends CommandBase {
 
   @Override
   public void initialize() {
-    pivotarmsubsystem.disablePid();
+    pivotarmsubsystem.disablePID();
   }
 
   @Override
@@ -31,8 +31,8 @@ public class PivotJoystickCommand extends CommandBase {
 
   @Override
   public void end(boolean interrupted) {
-    pivotarmsubsystem.enablePid();
-    pivotarmsubsystem.currentEncValtoSetpoint();
+    pivotarmsubsystem.enablePID();
+    pivotarmsubsystem.currentEnctoSetpoint();
   }
 
   @Override

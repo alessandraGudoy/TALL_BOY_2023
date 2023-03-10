@@ -7,16 +7,13 @@ import frc.robot.commands.DriveCommands.*;
 import frc.robot.commands.PivotCommands.*;
 import frc.robot.commands.LED_Commands.*;
 import frc.robot.subsystems.*;
-import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.wpilibj2.command.button.POVButton;
 
 public class RobotContainer {
   public static SwerveSubsystem swerveSubsystem = new SwerveSubsystem();
@@ -69,7 +66,9 @@ public class RobotContainer {
     new JoystickButton(joystick, 2).whileTrue(new ManualClaw(clawSubsystem, () -> joystick.getX()));
 
     /* PIVOT */
-    new JoystickButton(joystick, 1).whileTrue(new PivotJoystickCommand(pivotSubsystem, () -> -joystick.getY()));
+     new JoystickButton(joystick, 1).whileTrue(new PivotJoystickCommand(pivotSubsystem, () -> -joystick.getY()));
+     new JoystickButton(joystick, 7).onTrue(new PivotMiddleCommand(pivotSubsystem));
+     new JoystickButton(joystick, 11).onTrue(new PivotLowCommand(pivotSubsystem));
 
     /* LIGHTS */
     new JoystickButton(joystick, 6).toggleOnTrue(new Yellow(lights));

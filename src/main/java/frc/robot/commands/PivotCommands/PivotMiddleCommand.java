@@ -1,38 +1,35 @@
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
+
 package frc.robot.commands.PivotCommands;
 
-import frc.robot.subsystems.PivotSubsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.PivotSubsystem;
 
-public class PivotMiddleCommand extends CommandBase{
-    private PivotSubsystem p_subsystem; 
-    private double setpoint;
+public class PivotMiddleCommand extends CommandBase {
+  private PivotSubsystem pivotSubsystem;
+  private double setpoint;
 
-    public PivotMiddleCommand(PivotSubsystem p_subs){ // Pivot PID Constructor 
-        p_subsystem = p_subs;
-        addRequirements(p_subs);
-        setpoint = 102;
-    }
+  public PivotMiddleCommand(PivotSubsystem pivotSubs) {
+    pivotSubsystem = pivotSubs;
+    setpoint = 0; //FIXME
+    addRequirements(pivotSubs);
+  }
+  @Override
+  public void initialize() {
 
-    @Override
-    public void initialize(){
+  }
+  @Override
+  public void execute() {
+    pivotSubsystem.newSetpoint(setpoint);
+  }
+  @Override
+  public void end(boolean interrupted) {
 
-    }
-
-    @Override
-    public void execute(){ // Executes and runs the Pivot Arm PID
-        SmartDashboard.putString("Current Command", getName());
-        p_subsystem.newSetpoint(setpoint);
-   
-    }
-
-    @Override
-    public void end(boolean interrupted){ // Ends the code when isFinished is true
-
-    }
-
-    @Override
-    public boolean isFinished(){ // Returns true when the code is finished
-        return p_subsystem.isAtSetPoint();
-    }
+  }
+  @Override
+  public boolean isFinished() {
+    return pivotSubsystem.isAtSetpoint();
+  }
 }

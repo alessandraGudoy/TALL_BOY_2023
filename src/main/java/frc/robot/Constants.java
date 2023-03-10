@@ -21,7 +21,6 @@ public final class Constants {
     public static final double VOLTAGE = 7.2;
 
     /* * * SWERVE DRIVE KINEMATICS * * */
-    //FIXME
     public static final SwerveDriveKinematics DRIVE_KINEMATICS = new SwerveDriveKinematics(
       // front left
       new Translation2d(WHEEL_BASE / 2, TRACK_WIDTH / 2),
@@ -75,19 +74,24 @@ public final class Constants {
 
   public static class PivotConsts {
     public static final int PIVOT_MOTOR_PORT = 14;
-    public static final int PIVOT_LIMIT_PORT = 2;
+    public static final int PIVOT_LOWER_LIMIT = 0; //FIXME
+    public static final int PIVOT_UPPER_LIMIT = 0; //FIXME
+
+    public static final double PIVOT_KP = 0; //FIXME
+    public static final double PIVOT_KI = 0; //FIXME
+    public static final double PIVOT_KD = 0; //FIXME
   }
 
   public static class ClawConsts {
     public static final int WRIST_MOTOR_PORT = 15;
-    public static final int CLAW_FORWARD_CHANNEL = 0;
-    public static final int CLAW_REVERSE_CHANNEL = 8;
+    public static final int CLAW_FORWARD_CHANNEL = 0; //FIXME
+    public static final int CLAW_REVERSE_CHANNEL = 8; //FIXME
 
     public static final double WRIST_SPEED = 0.8;
 
-    public static final double ROTATE_90 = 95;
-    public static final double ROTATION_T0_90_ENC = 95;
-    public static final double ROTATION_TO_180_ENC = 190;
+    public static final double ROTATE_90 = 95; //FIXME
+    public static final double ROTATION_T0_90_ENC = 95; //FIXME
+    public static final double ROTATION_TO_180_ENC = 190; //FIXME
   }
 
   public static class AutoConsts {
