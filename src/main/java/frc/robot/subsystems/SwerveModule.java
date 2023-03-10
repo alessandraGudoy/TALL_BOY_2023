@@ -35,7 +35,16 @@ public class SwerveModule extends SubsystemBase{
         drivingMotor = new CANSparkMax(drivePort, MotorType.kBrushless);
 
         absoluteEncoder = turningMotor.getAbsoluteEncoder(Type.kDutyCycle);
+        // absoluteEncoder.setPositionConversionFactor(SwerveConsts.ABSOLUTE_ENCODER_ROTATION_CONVERSION);
+        // absoluteEncoder.setVelocityConversionFactor(SwerveConsts.ABSOLUTE_ENCODER_SPEED_CONVERSION);
+
         drivingEnc = drivingMotor.getEncoder();
+        drivingEnc.setPositionConversionFactor(SwerveConsts.DRIVE_ENCODER_ROTATION_CONVERSION);
+        drivingEnc.setVelocityConversionFactor(SwerveConsts.DRIVE_ENCODER_SPEED_CONVERSION);
+
+        turningEnc = turningMotor.getEncoder();
+        turningEnc.setPositionConversionFactor(SwerveConsts.TURNING_ENCODER_ROTATION_CONVERSION);
+        turningEnc.setVelocityConversionFactor(SwerveConsts.TURNING_ENCODER_SPEED_CONVERSION);
 
         turningPID = new PIDController(SwerveConsts.KP_TURNING, SwerveConsts.KI_TURNING, SwerveConsts.KD_TURNING);
         turningPID.enableContinuousInput(-Math.PI, Math.PI); // System is circular;  Goes from -Math.PI to 0 to Math.PI
@@ -43,11 +52,6 @@ public class SwerveModule extends SubsystemBase{
         this.encoderOffset = encoderOffset;
         this.encoderReversed = encoderReversed;
         
-        turningEnc.setPositionConversionFactor(SwerveConsts.TURNING_ENCODER_ROTATION_CONVERSION);
-        turningEnc.setVelocityConversionFactor(SwerveConsts.TURNING_ENCODER_SPEED_CONVERSION);
-        drivingEnc.setPositionConversionFactor(SwerveConsts.DRIVE_ENCODER_ROTATION_CONVERSION);
-        drivingEnc.setVelocityConversionFactor(SwerveConsts.DRIVE_ENCODER_SPEED_CONVERSION);
-
         drivingMotor.setInverted(driveReversed);
         turningMotor.setInverted(turnReversed);
 

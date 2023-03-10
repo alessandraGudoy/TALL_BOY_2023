@@ -53,6 +53,12 @@ public final class Constants {
     public static final double FR_OFFSET = -Math.toRadians(0);
 
     /* * * CONVERSIONS FOR ENCODERS * * */
+    public static final double ABSOLUTE_ENCODER_ROTATION_CONVERSION = 1;
+    public static final double ABSOLUTE_ENCODER_SPEED_CONVERSION = ABSOLUTE_ENCODER_ROTATION_CONVERSION / 60;
+    // 8192 counts per motor revolution
+    // 8192 * steer gear ratio  => counts per wheel revolution
+    
+
     public static final double DRIVE_ENCODER_ROTATION_CONVERSION = GEAR_RATIO * Math.PI * WHEEL_DIAMETER;
     public static final double DRIVE_ENCODER_SPEED_CONVERSION = DRIVE_ENCODER_ROTATION_CONVERSION / 60;
 
