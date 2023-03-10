@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXSensorCollection;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
@@ -28,6 +29,8 @@ public class PivotSubsystem extends SubsystemBase{
         lowerLimit = new DigitalInput(PivotConsts.PIVOT_LOWER_LIMIT);
         upperLimit = new DigitalInput(PivotConsts.PIVOT_UPPER_LIMIT);
         enc = new TalonFXSensorCollection(motor);
+        
+        motor.setNeutralMode(NeutralMode.Brake);
     }
 
     /* * * PID Methods * * */
