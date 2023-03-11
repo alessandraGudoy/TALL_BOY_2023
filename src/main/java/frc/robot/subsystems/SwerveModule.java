@@ -26,7 +26,7 @@ public class SwerveModule extends SubsystemBase{
 
     private double chassisOffset;
 
-    public SwerveModule(int turnPort, int drivePort, double chassisOffset){
+    public SwerveModule(int turnPort, int drivePort, double chassisOffset, boolean driveReversed){
         turningMotor = new CANSparkMax(turnPort, MotorType.kBrushless);
         drivingMotor = new CANSparkMax(drivePort, MotorType.kBrushless);
 
@@ -43,7 +43,7 @@ public class SwerveModule extends SubsystemBase{
 
         this.chassisOffset = chassisOffset;
         
-        // drivingMotor.setInverted(driveReversed);
+         drivingMotor.setInverted(driveReversed);
         absoluteEncoder.setInverted(true);
 
         drivingMotor.setIdleMode(IdleMode.kBrake);

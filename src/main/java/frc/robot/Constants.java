@@ -74,9 +74,9 @@ public final class Constants {
     public static final double MAX_ROTATION = MAX_SPEED / Math.hypot(TRACK_WIDTH / 2.0, WHEEL_BASE / 2.0);
 
     /* * * PID VALUES * * */
-    public static final double KP_TURNING = 0.1;
+    public static final double KP_TURNING = 0.18;
     public static final double KI_TURNING = 0.0;
-    public static final double KD_TURNING = 0.0001;
+    public static final double KD_TURNING = 0.0002;
   }
 
   public static class PivotConsts {
@@ -96,7 +96,7 @@ public final class Constants {
 
     public static final double WRIST_SPEED = 0.8;
 
-    public static final double ROTATE_90 = 95;
+    public static final double ROTATE_90 = 100;
     public static final double ROTATION_T0_90_ENC = 100;
     public static final double ROTATION_TO_OTHER_90_ENC = -100;
   }
