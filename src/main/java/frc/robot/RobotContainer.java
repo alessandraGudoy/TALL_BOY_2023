@@ -29,11 +29,13 @@ public class RobotContainer {
   public SendableChooser<Command> autoChooser = new SendableChooser<>();
 
   public RobotContainer() {
-    swerveSubsystem.setDefaultCommand(new FieldOriented(swerveSubsystem,
-        () -> xbox.getLeftY() * 0.95,
-        () -> xbox.getLeftX() * 0.95,
-        () -> -xbox.getRightX() * 0.95));
+    // swerveSubsystem.setDefaultCommand(new FieldOriented(swerveSubsystem,
+    //     () -> xbox.getLeftY() * 0.95,
+    //     () -> xbox.getLeftX() * 0.95,
+    //     () -> -xbox.getRightX() * 0.95));
 
+        pivotSubsystem.setDefaultCommand(new PivotJoystickCommand(pivotSubsystem, () -> xbox.getLeftY()));
+        
     selectAuto();
     configureBindings();
   }
@@ -66,7 +68,6 @@ public class RobotContainer {
     new JoystickButton(joystick, 2).whileTrue(new ManualClaw(clawSubsystem, () -> joystick.getX()));
 
     /* PIVOT */
-     new JoystickButton(joystick, 1).whileTrue(new PivotJoystickCommand(pivotSubsystem, () -> -joystick.getY()));
      new JoystickButton(joystick, 7).onTrue(new PivotMiddleCommand(pivotSubsystem));
      new JoystickButton(joystick, 11).onTrue(new PivotLowCommand(pivotSubsystem));
 

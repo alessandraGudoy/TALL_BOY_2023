@@ -80,8 +80,8 @@ public final class Constants {
 
   public static class PivotConsts {
     public static final int PIVOT_MOTOR_PORT = 14;
-    public static final int PIVOT_LOWER_LIMIT = 0; //FIXME
-    public static final int PIVOT_UPPER_LIMIT = 0; //FIXME
+    public static final int PIVOT_LOWER_LIMIT = 9; //FIXME
+    public static final int PIVOT_UPPER_LIMIT = 8; //FIXME
 
     public static final double PIVOT_KP = 0; //FIXME
     public static final double PIVOT_KI = 0; //FIXME
