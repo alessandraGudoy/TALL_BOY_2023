@@ -10,6 +10,7 @@ import com.revrobotics.SparkMaxAbsoluteEncoder.Type;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.*;
 
@@ -153,9 +154,10 @@ public class SwerveModule extends SubsystemBase{
 
     @Override
     public void periodic(){
-        // SmartDashboard.putNumber("S["+absoluteEncoder.getDeviceID()+"] DRIVE SPEED", getDriveSpeed());
-        // SmartDashboard.putNumber("S["+absoluteEncoder.getDeviceID()+"] ABS ENC", getAbsoluteEncoder());
-        // SmartDashboard.putNumber("S["+absoluteEncoder.getDeviceID()+"] ENCODER", getDrivePosition());
+        int num = turningMotor.getDeviceId()+4;
+        SmartDashboard.putNumber("S["+num+"] DRIVE SPEED", getDriveSpeed());
+        SmartDashboard.putNumber("S["+num+"] ABS ENC", getAbsoluteEncoder());
+        SmartDashboard.putNumber("S["+num+"] ENCODER", getDrivePosition());
     }
 
 }

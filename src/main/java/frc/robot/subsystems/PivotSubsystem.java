@@ -97,22 +97,22 @@ public class PivotSubsystem extends SubsystemBase{
     @Override
     public void periodic(){
         encoderValue = getEncoder();
-        double calcSpeed = 0;
+        // double calcSpeed = 0;
 
-        if(pidOn){
-            calcSpeed = pid.calculate(encoderValue, setpoint);
-        }
-        else{
-            calcSpeed = manualSpeed;
-        }
-        if(calcSpeed > 0){
-            calcSpeed = 0;
-        }
-        else if(calcSpeed < 0){
-            calcSpeed = 0;
-        }
+        // if(pidOn){
+        //     calcSpeed = pid.calculate(encoderValue, setpoint);
+        // }
+        // else{
+        //     calcSpeed = manualSpeed;
+        // }
+        // if(calcSpeed > 0){
+        //     calcSpeed = 0;
+        // }
+        // else if(calcSpeed < 0){
+        //     calcSpeed = 0;
+        // }
         
-        motor.set(calcSpeed);
+        // motor.set(calcSpeed);
 
         SmartDashboard.putNumber("[P] ENCODER", getEncoder());
         SmartDashboard.putNumber("[P] SETPOINT", setpoint);

@@ -6,6 +6,7 @@ import frc.robot.commands.ClawCommands.*;
 import frc.robot.commands.DriveCommands.*;
 import frc.robot.commands.PivotCommands.*;
 import frc.robot.commands.LED_Commands.*;
+import frc.robot.commands.MovementCommands.DriveBackwardCommand;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -29,12 +30,12 @@ public class RobotContainer {
   public SendableChooser<Command> autoChooser = new SendableChooser<>();
 
   public RobotContainer() {
-    // swerveSubsystem.setDefaultCommand(new FieldOriented(swerveSubsystem,
-    //     () -> xbox.getLeftY() * 0.95,
-    //     () -> xbox.getLeftX() * 0.95,
-    //     () -> -xbox.getRightX() * 0.95));
+    swerveSubsystem.setDefaultCommand(new DriverControl(swerveSubsystem,
+        () -> xbox.getLeftY() * 0.95,
+        () -> xbox.getLeftX() * 0.95,
+        () -> -xbox.getRightX() * 0.95));
 
-        pivotSubsystem.setDefaultCommand(new PivotJoystickCommand(pivotSubsystem, () -> xbox.getLeftY()));
+        //pivotSubsystem.setDefaultCommand(new PivotJoystickCommand(pivotSubsystem, () -> xbox.getLeftY()));
         
     selectAuto();
     configureBindings();
