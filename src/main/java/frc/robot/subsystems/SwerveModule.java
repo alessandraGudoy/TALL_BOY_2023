@@ -9,6 +9,7 @@ import com.revrobotics.SparkMaxAbsoluteEncoder.Type;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -18,43 +19,32 @@ public class SwerveModule extends SubsystemBase{
     private CANSparkMax turningMotor;
     private CANSparkMax drivingMotor;
 
-    //private CANCoder absoluteEncoder;
-
-    private RelativeEncoder turningEnc;
     private RelativeEncoder drivingEnc;
-
     private AbsoluteEncoder absoluteEncoder;
 
     private PIDController turningPID;
-    // private PIDController drivingPID;
 
-    private double encoderOffset;
-    private boolean encoderReversed;
+    private double chassisOffset;
 
-    public SwerveModule(int turnPort, int drivePort, double encoderOffset, boolean encoderReversed, boolean driveReversed, boolean turnReversed){
+    public SwerveModule(int turnPort, int drivePort, double chassisOffset){
         turningMotor = new CANSparkMax(turnPort, MotorType.kBrushless);
         drivingMotor = new CANSparkMax(drivePort, MotorType.kBrushless);
 
         absoluteEncoder = turningMotor.getAbsoluteEncoder(Type.kDutyCycle);
-        // absoluteEncoder.setPositionConversionFactor(SwerveConsts.ABSOLUTE_ENCODER_ROTATION_CONVERSION);
-        // absoluteEncoder.setVelocityConversionFactor(SwerveConsts.ABSOLUTE_ENCODER_SPEED_CONVERSION);
+        absoluteEncoder.setPositionConversionFactor(SwerveConsts.TURNING_ENCODER_ROTATION_CONVERSION);
+        absoluteEncoder.setVelocityConversionFactor(SwerveConsts.TURNING_ENCODER_SPEED_CONVERSION);
 
         drivingEnc = drivingMotor.getEncoder();
         drivingEnc.setPositionConversionFactor(SwerveConsts.DRIVE_ENCODER_ROTATION_CONVERSION);
         drivingEnc.setVelocityConversionFactor(SwerveConsts.DRIVE_ENCODER_SPEED_CONVERSION);
 
-        turningEnc = turningMotor.getEncoder();
-        turningEnc.setPositionConversionFactor(SwerveConsts.TURNING_ENCODER_ROTATION_CONVERSION);
-        turningEnc.setVelocityConversionFactor(SwerveConsts.TURNING_ENCODER_SPEED_CONVERSION);
-
         turningPID = new PIDController(SwerveConsts.KP_TURNING, SwerveConsts.KI_TURNING, SwerveConsts.KD_TURNING);
         turningPID.enableContinuousInput(-Math.PI, Math.PI); // System is circular;  Goes from -Math.PI to 0 to Math.PI
 
-        this.encoderOffset = encoderOffset;
-        this.encoderReversed = encoderReversed;
+        this.chassisOffset = chassisOffset;
         
-        drivingMotor.setInverted(driveReversed);
-        turningMotor.setInverted(turnReversed);
+        // drivingMotor.setInverted(driveReversed);
+        absoluteEncoder.setInverted(true);
 
         drivingMotor.setIdleMode(IdleMode.kBrake);
         turningMotor.setIdleMode(IdleMode.kBrake);
@@ -70,20 +60,9 @@ public class SwerveModule extends SubsystemBase{
         return drivingEnc.getPosition();
     }
 
-    public double getTurningPosition(){
-        //return (turningEnc.getPosition() % 900) / 900 * 360;
-        return turningEnc.getPosition() + encoderOffset;
-    }
-
     //absolute encoder in radians 
     public double getAbsoluteEncoder(){
-        double angle = Math.toRadians(absoluteEncoder.getPosition());
-        //double angle = (absoluteEncoder.getAbsolutePosition() * 2.0 * Math.PI) - encoderOffset; // in radians
-        if(encoderReversed){
-            return (angle * -1);
-        } else {
-            return angle;
-        }
+        return absoluteEncoder.getPosition() - chassisOffset;
     }
 
     /* * * SPEED VALUES * * */
@@ -92,9 +71,9 @@ public class SwerveModule extends SubsystemBase{
         return drivingEnc.getVelocity();
     }
 
-    public double getTurningSpeed(){
-        return turningEnc.getVelocity();
-    }
+    // public double getTurningSpeed(){
+    //     return turningEnc.getVelocity();
+    // }
 
     //get the state of the module
     public SwerveModuleState getState(){
@@ -106,16 +85,22 @@ public class SwerveModule extends SubsystemBase{
         return new SwerveModuleState(getDriveSpeed(), new Rotation2d(getAbsoluteEncoder()));
     }
 
+    public SwerveModulePosition getPosition(){
+        return new SwerveModulePosition(
+            drivingEnc.getPosition(),
+            new Rotation2d(absoluteEncoder.getPosition() - chassisOffset));
+    }
+
     // set turning enc to value of absolute encoder
     public void resetEncoders(){
         drivingEnc.setPosition(0);
-        turningEnc.setPosition(getAbsoluteEncoder());
+        //turningEnc.setPosition(getAbsoluteEncoder());
     }
 
     //sets the desired state of the module (for left joystick)
     public void setDesiredState(SwerveModuleState state){
         // To make keep robot from going back to 0 position
-        if(Math.abs(state.speedMetersPerSecond) < 0.01){
+        if(Math.abs(state.speedMetersPerSecond) < 0.1){
             stop();
             return;
         }

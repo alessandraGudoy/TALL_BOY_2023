@@ -4,6 +4,7 @@
 
 package frc.robot.commands.PivotCommands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.PivotSubsystem;
 
@@ -13,7 +14,7 @@ public class PivotMiddleCommand extends CommandBase {
 
   public PivotMiddleCommand(PivotSubsystem pivotSubs) {
     pivotSubsystem = pivotSubs;
-    setpoint = 0; //FIXME
+    setpoint = 0;
     addRequirements(pivotSubs);
   }
   @Override
@@ -22,12 +23,14 @@ public class PivotMiddleCommand extends CommandBase {
   }
   @Override
   public void execute() {
+    SmartDashboard.putBoolean("PIVOT DONE", false);
     pivotSubsystem.newSetpoint(setpoint);
   }
   @Override
   public void end(boolean interrupted) {
-
+    SmartDashboard.putBoolean("PIVOT DONE", true);
   }
+
   @Override
   public boolean isFinished() {
     return pivotSubsystem.isAtSetpoint();

@@ -22,16 +22,16 @@ public class SwerveSubsystem extends SubsystemBase {
 
     public SwerveSubsystem() {
         frontLeft = new SwerveModule(SwerveConsts.FL_TURN_PORT, SwerveConsts.FL_DRIVE_PORT, 
-            SwerveConsts.FL_OFFSET, false, true, true);
+            SwerveConsts.FL_OFFSET);
 
         backLeft = new SwerveModule(SwerveConsts.BL_TURN_PORT, SwerveConsts.BL_DRIVE_PORT,
-            SwerveConsts.BL_OFFSET, false, true, true);
+            SwerveConsts.BL_OFFSET);
 
         backRight = new SwerveModule(SwerveConsts.BR_TURN_PORT, SwerveConsts.BR_DRIVE_PORT,
-            SwerveConsts.BR_OFFSET, false, true, true);
+            SwerveConsts.BR_OFFSET);
 
         frontRight = new SwerveModule(SwerveConsts.FR_TURN_PORT, SwerveConsts.FR_DRIVE_PORT,
-            SwerveConsts.FR_OFFSET, false, true, true);
+            SwerveConsts.FR_OFFSET);
 
         navx = new AHRS(SPI.Port.kMXP);
 
