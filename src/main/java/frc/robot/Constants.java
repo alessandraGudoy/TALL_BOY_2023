@@ -12,8 +12,8 @@ public final class Constants {
   public static class SwerveConsts{
     /* * * MEASUREMENTS * * */
     public static final double WHEEL_DIAMETER = 3 * 2.5 / 100;
-    public static final double TRACK_WIDTH = 0.635; //FIXME
-    public static final double WHEEL_BASE = 0.635; // FIXME
+    public static final double TRACK_WIDTH = 0.435; //FIXME
+    public static final double WHEEL_BASE = 0.435; // FIXME
 
     public static final double GEAR_RATIO = 4.71 / 1;
     public static final double STEER_GEAR_RATIO = 150 / 7; //FIXME
@@ -96,8 +96,8 @@ public final class Constants {
     public static final double WRIST_SPEED = 0.8;
 
     public static final double ROTATE_90 = 95; //FIXME
-    public static final double ROTATION_T0_90_ENC = 95; //FIXME
-    public static final double ROTATION_TO_180_ENC = 190; //FIXME
+    public static final double ROTATION_T0_90_ENC = 100; //FIXME
+    public static final double ROTATION_TO_OTHER_90_ENC = -100; //FIXME
   }
 
   public static class AutoConsts {

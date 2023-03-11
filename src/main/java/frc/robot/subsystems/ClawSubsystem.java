@@ -75,13 +75,13 @@ public class ClawSubsystem extends SubsystemBase {
   }
 
   public void rotateTo180(){
-    if(getEncoder()<ClawConsts.ROTATION_TO_180_ENC){
-      clockwise();
-    } else if(getEncoder()>ClawConsts.ROTATION_TO_180_ENC){
-      counterclockwise();
-    } else{
-      stopWrist();
-    }
+    // if(getEncoder()<ClawConsts.ROTATION_TO_180_ENC){
+    //   clockwise();
+    // } else if(getEncoder()>ClawConsts.ROTATION_TO_180_ENC){
+    //   counterclockwise();
+    // } else{
+    //   stopWrist();
+    // }
   }
 
   public void go90Clockwise(double previousEnc){

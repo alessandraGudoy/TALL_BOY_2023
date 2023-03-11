@@ -4,7 +4,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXSensorCollection;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.PivotConsts;;
 
 public class PivotSubsystem extends SubsystemBase{
-    private TalonFX motor;
+    private WPI_TalonFX motor;
     private PIDController pid;
     private DigitalInput lowerLimit;
     private DigitalInput upperLimit;
@@ -24,7 +24,7 @@ public class PivotSubsystem extends SubsystemBase{
     private TalonFXSensorCollection enc;
     
     public PivotSubsystem(){
-        motor = new TalonFX(PivotConsts.PIVOT_MOTOR_PORT);
+        motor = new WPI_TalonFX(PivotConsts.PIVOT_MOTOR_PORT);
         pid = new PIDController(PivotConsts.PIVOT_KP, PivotConsts.PIVOT_KI, PivotConsts.PIVOT_KD);
         lowerLimit = new DigitalInput(PivotConsts.PIVOT_LOWER_LIMIT);
         upperLimit = new DigitalInput(PivotConsts.PIVOT_UPPER_LIMIT);
@@ -65,15 +65,15 @@ public class PivotSubsystem extends SubsystemBase{
 
     /* * * Pivot Movement Methods * * */
     public void manualPivot(double speed){
-        motor.set(ControlMode.PercentOutput, speed);
+        motor.set(speed);
     }
 
     public void pivotArm(double speed){
-        motor.set(ControlMode.PercentOutput, speed);
+        motor.set(speed);
     }
 
     public void stopPivot(){
-        motor.set(ControlMode.PercentOutput, 0);
+        motor.set(0);
     }
 
     public void setManualSpeed(double inputSpeed){
@@ -112,7 +112,7 @@ public class PivotSubsystem extends SubsystemBase{
             calcSpeed = 0;
         }
         
-        motor.set(ControlMode.PercentOutput, calcSpeed);
+        motor.set(calcSpeed);
 
         SmartDashboard.putNumber("[P] ENCODER", getEncoder());
         SmartDashboard.putNumber("[P] SETPOINT", setpoint);
