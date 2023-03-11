@@ -22,7 +22,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
-    compressor = new Compressor(PneumaticsModuleType.REVPH);
+    compressor = new Compressor(PneumaticsModuleType.CTREPCM);
     compressor.enableDigital();
     m_robotContainer = new RobotContainer();
   }
@@ -50,15 +50,15 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledPeriodic() {
     LimelightHelpers.setPipelineIndex("limelight", 7);
-    RobotContainer.lights.off();
+    // RobotContainer.lights.off();
   }
 
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-    RobotContainer.swerveSubsystem.resetNavx();
-    RobotContainer.swerveSubsystem.straightenWheels();
-    RobotContainer.swerveSubsystem.stopModules();
+    // RobotContainer.swerveSubsystem.resetNavx();
+    // RobotContainer.swerveSubsystem.straightenWheels();
+    // RobotContainer.swerveSubsystem.stopModules();
     LimelightHelpers.setCameraMode_Processor("limelight");
     LimelightHelpers.setPipelineIndex("limelight", 7);
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
@@ -88,9 +88,9 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    if(Timer.getMatchTime() <= 15){
-      RobotContainer.lights.poppy();
-    }
+    // if(Timer.getMatchTime() <= 15){
+    //   RobotContainer.lights.poppy();
+    // }
   }
 
   @Override

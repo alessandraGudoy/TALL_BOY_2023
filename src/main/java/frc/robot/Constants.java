@@ -79,9 +79,9 @@ public final class Constants {
   }
 
   public static class PivotConsts {
-    public static final int PIVOT_MOTOR_PORT = 14;
-    public static final int PIVOT_LOWER_LIMIT = 0; //FIXME
-    public static final int PIVOT_UPPER_LIMIT = 0; //FIXME
+    public static final int PIVOT_MOTOR_PORT = 4;
+    public static final int PIVOT_LOWER_LIMIT = 9; 
+    public static final int PIVOT_UPPER_LIMIT = 8; 
 
     public static final double PIVOT_KP = 0; //FIXME
     public static final double PIVOT_KI = 0; //FIXME
@@ -90,8 +90,8 @@ public final class Constants {
 
   public static class ClawConsts {
     public static final int WRIST_MOTOR_PORT = 15;
-    public static final int CLAW_FORWARD_CHANNEL = 0; //FIXME
-    public static final int CLAW_REVERSE_CHANNEL = 8; //FIXME
+    public static final int CLAW_FORWARD_CHANNEL = 0;
+    public static final int CLAW_REVERSE_CHANNEL = 1;
 
     public static final double WRIST_SPEED = 0.8;
 
