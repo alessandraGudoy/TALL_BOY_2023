@@ -25,8 +25,10 @@ public class ClawSubsystem extends SubsystemBase {
     wristEnc = wrist.getEncoder();
 
     //  forward=open    reverse=closed
-    claw = new DoubleSolenoid(PneumaticsModuleType.REVPH, ClawConsts.CLAW_FORWARD_CHANNEL, ClawConsts.CLAW_REVERSE_CHANNEL);
+    claw = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, ClawConsts.CLAW_FORWARD_CHANNEL, ClawConsts.CLAW_REVERSE_CHANNEL);
     claw.set(Value.kForward);
+
+    //forward = open
   }
 
   public void resetEnc(){

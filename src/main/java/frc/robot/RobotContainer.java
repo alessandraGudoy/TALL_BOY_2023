@@ -29,7 +29,7 @@ public class RobotContainer {
   public SendableChooser<Command> autoChooser = new SendableChooser<>();
 
   public RobotContainer() {
-    swerveSubsystem.setDefaultCommand(new DriverControl(swerveSubsystem,
+    swerveSubsystem.setDefaultCommand(new FieldOriented(swerveSubsystem,
         () -> xbox.getLeftY() * 0.95,
         () -> xbox.getLeftX() * 0.95,
         () -> xbox.getRightX() * 0.95));
@@ -43,7 +43,7 @@ public class RobotContainer {
 
     /* SWERVE */
     new JoystickButton(xbox, 1).toggleOnTrue(
-        new DriverControl(swerveSubsystem,
+        new FieldOriented(swerveSubsystem,
             () -> -xbox.getLeftY() * 0.35,
             () -> -xbox.getLeftX() * 0.35,
             () -> -xbox.getRightX() * 0.35));
@@ -52,23 +52,23 @@ public class RobotContainer {
     //         () -> -xbox.getLeftY() * 0.75,
     //         () -> -xbox.getLeftX() * 0.75,
     //         () -> -xbox.getRightX() * 0.75));
-    //new JoystickButton(xbox, 2).toggleOnTrue(new Lock(swerveSubsystem));
 
+    new JoystickButton(xbox, 2).toggleOnTrue(new Lock(swerveSubsystem));
     new JoystickButton(xbox, 7).onTrue(new InstantCommand(() -> swerveSubsystem.resetNavx()));
 
     /* CLAW */
-    // new JoystickButton(xbox, 5).onTrue(new Claw(clawSubsystem));
+    new JoystickButton(xbox, 5).onTrue(new Claw(clawSubsystem));
 
-    new JoystickButton(xbox, 2).onTrue(new Go90Clockwise(clawSubsystem));
-    new JoystickButton(xbox, 4).onTrue(new ToStartingPosition(clawSubsystem));
-    new JoystickButton(xbox, 3).onTrue(new Go90Counterclockwise(clawSubsystem));
+    new JoystickButton(joystick, 8).onTrue(new Go90Clockwise(clawSubsystem));
+    new JoystickButton(joystick, 10).onTrue(new ToStartingPosition(clawSubsystem));
+    new JoystickButton(joystick, 12).onTrue(new Go90Counterclockwise(clawSubsystem));
 
     new JoystickButton(joystick, 2).whileTrue(new ManualClaw(clawSubsystem, () -> joystick.getX()));
 
     /* PIVOT */
-    //  new JoystickButton(joystick, 4).onTrue(new PivotMiddleCommand(pivotSubsystem));
-    //  new JoystickButton(joystick, 3).onTrue(new PivotLowCommand(pivotSubsystem));
-    //  new JoystickButton(joystick, 5).whileTrue(new PivotJoystickCommand(pivotSubsystem, ()->xbox.getRightY()));
+     new JoystickButton(joystick, 7).onTrue(new PivotMiddleCommand(pivotSubsystem));
+     new JoystickButton(joystick, 11).onTrue(new PivotLowCommand(pivotSubsystem));
+     new JoystickButton(joystick, 1).whileTrue(new PivotJoystickCommand(pivotSubsystem, ()->joystick.getY()));
 
     /* LIGHTS */
     new JoystickButton(joystick, 6).toggleOnTrue(new Yellow(lights));
