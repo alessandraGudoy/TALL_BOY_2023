@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.ClawCommands.Claw;
 import frc.robot.commands.ClawCommands.Go90Clockwise;
+import frc.robot.commands.ClawCommands.Go90Counterclockwise;
 import frc.robot.commands.ClawCommands.OpenClaw;
 import frc.robot.commands.ClawCommands.ToStartingPosition;
 import frc.robot.commands.PivotCommands.PivotLowCommand;
@@ -18,10 +19,17 @@ public class Hybrid extends SequentialCommandGroup {
 
     // DROP IN HYBRID, GO BACK TO STARTING POSITION 
     addCommands(
-      new PivotLowCommand(pivot),
+      new ParallelCommandGroup(
+        new PivotLowCommand(pivot), 
+        new Go90Clockwise(claw)
+      ),
+      
       new OpenClaw(claw), 
-      new PivotMiddleCommand(pivot)
 
+      new ParallelCommandGroup(
+        new PivotMiddleCommand(pivot), 
+        new Go90Counterclockwise(claw)
+      )
     );
   }
 }
