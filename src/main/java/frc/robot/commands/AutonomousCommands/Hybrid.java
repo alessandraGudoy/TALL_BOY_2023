@@ -23,8 +23,10 @@ public class Hybrid extends SequentialCommandGroup {
         new PivotLowCommand(pivot), 
         new Go90Clockwise(claw)
       ),
-      
+
       new OpenClaw(claw), 
+
+      new Delay(1.0),
 
       new ParallelCommandGroup(
         new PivotMiddleCommand(pivot), 
