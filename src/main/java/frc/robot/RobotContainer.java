@@ -30,8 +30,8 @@ public class RobotContainer {
 
   public RobotContainer() {
     swerveSubsystem.setDefaultCommand(new FieldOriented(swerveSubsystem,
-        () -> xbox.getLeftY() * 0.95,
-        () -> xbox.getLeftX() * 0.95,
+        () -> -xbox.getLeftY() * 0.95,
+        () -> -xbox.getLeftX() * 0.95,
         () -> xbox.getRightX() * 0.95));
         
     selectAuto();
@@ -46,7 +46,7 @@ public class RobotContainer {
         new FieldOriented(swerveSubsystem,
             () -> -xbox.getLeftY() * 0.35,
             () -> -xbox.getLeftX() * 0.35,
-            () -> -xbox.getRightX() * 0.35));
+            () -> xbox.getRightX() * 0.35));
     // new JoystickButton(xbox, 6).toggleOnTrue(
     //     new DriverControl(swerveSubsystem,
     //         () -> -xbox.getLeftY() * 0.75,
