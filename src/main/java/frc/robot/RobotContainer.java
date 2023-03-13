@@ -5,6 +5,7 @@ import frc.robot.commands.PitchBalance;
 import frc.robot.commands.AutonomousCommands.*;
 import frc.robot.commands.ClawCommands.*;
 import frc.robot.commands.DriveCommands.*;
+import frc.robot.commands.MovementCommands.DriveBackwardCommand;
 import frc.robot.commands.PivotCommands.*;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.Joystick;
@@ -29,6 +30,7 @@ public class RobotContainer {
   private Command hybrid = new Hybrid(swerveSubsystem, pivotSubsystem, clawSubsystem);
   private Command hybridMobility = new HybridMobility(swerveSubsystem, pivotSubsystem, clawSubsystem);
   private Command hybridBalance = new HybridBalance(swerveSubsystem, pivotSubsystem, clawSubsystem);
+  private Command encBalance = new DriveBackwardCommand(swerveSubsystem, 1.5);
 
   private Command pitchBalance = new PitchBalance(swerveSubsystem);
   public SendableChooser<Command> autoChooser = new SendableChooser<>();
@@ -90,6 +92,7 @@ public class RobotContainer {
     autoChooser.addOption("Hybrid", hybrid);
     autoChooser.addOption("Hybrid Mobility", hybridMobility);
     autoChooser.addOption("Hybrid Balance", hybridBalance);
+    autoChooser.addOption("Encoder Balance", encBalance);
     
     autoChooser.addOption("PITCH BALANCE", pitchBalance);
 
