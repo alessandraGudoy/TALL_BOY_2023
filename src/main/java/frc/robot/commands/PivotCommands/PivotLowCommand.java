@@ -32,7 +32,7 @@ public class PivotLowCommand extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return pivotSubsystem.isAtSetpoint();
+    return pivotSubsystem.isAtSetpoint() || pivotSubsystem.isLowerLimitPressed();
   }
 
 }
