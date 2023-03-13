@@ -33,6 +33,6 @@ public class PivotMiddleCommand extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return pivotSubsystem.isAtSetpoint() || pivotSubsystem.isUpperLimitPressed();
+    return pivotSubsystem.isUpperLimitPressed();
   }
 }

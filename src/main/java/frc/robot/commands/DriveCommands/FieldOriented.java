@@ -49,7 +49,7 @@ public class FieldOriented extends CommandBase{
         zSpeed = modifyAxis(zSpeed); //zLimiter.calculate(zSpeed) * SwerveConsts.maxRotation;
 
         // Chassis Speeds
-        ChassisSpeeds chassisSpeeds = ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, zSpeed, swerveSubsystem.getRotation2d());
+        ChassisSpeeds chassisSpeeds = ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, zSpeed*0.9, swerveSubsystem.getRotation2d());
 
         // Convert chassis speeds to individual module states
         SwerveModuleState[] moduleStates = SwerveConsts.DRIVE_KINEMATICS.toSwerveModuleStates(chassisSpeeds);
@@ -72,7 +72,7 @@ public class FieldOriented extends CommandBase{
     /* * * ADDED METHODS * * */
 
     public double deadzone(double num){
-        return Math.abs(num) > 0.01 ? num : 0;
+        return Math.abs(num) > 0.05 ? num : 0;
     }
 
     private static double modifyAxis(double num) {

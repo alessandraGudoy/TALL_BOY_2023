@@ -84,8 +84,8 @@ public final class Constants {
     public static final int PIVOT_LOWER_LIMIT = 9;
     public static final int PIVOT_UPPER_LIMIT = 8;
 
-    public static final double PIVOT_KP = 0.000008;
-    public static final double PIVOT_KI = 0.0000008;
+    public static final double PIVOT_KP = 0.000015;
+    public static final double PIVOT_KI = 0.0;//0.000001
     public static final double PIVOT_KD = 0;
   }
 

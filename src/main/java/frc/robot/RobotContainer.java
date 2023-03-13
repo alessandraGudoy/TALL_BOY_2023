@@ -1,11 +1,11 @@
 package frc.robot;
 
 import frc.robot.Constants.DriverControlConsts;
+import frc.robot.commands.PitchBalance;
 import frc.robot.commands.AutonomousCommands.*;
 import frc.robot.commands.ClawCommands.*;
 import frc.robot.commands.DriveCommands.*;
 import frc.robot.commands.PivotCommands.*;
-import frc.robot.commands.LED_Commands.*;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -27,6 +27,10 @@ public class RobotContainer {
   //AUTONOMOUS CHOICES
   private Command doNothing = new DoNothing();
   private Command hybrid = new Hybrid(swerveSubsystem, pivotSubsystem, clawSubsystem);
+  private Command hybridMobility = new HybridMobility(swerveSubsystem, pivotSubsystem, clawSubsystem);
+  private Command hybridBalance = new HybridBalance(swerveSubsystem, pivotSubsystem, clawSubsystem);
+
+  private Command pitchBalance = new PitchBalance(swerveSubsystem);
   public SendableChooser<Command> autoChooser = new SendableChooser<>();
 
   public RobotContainer() {
@@ -60,9 +64,9 @@ public class RobotContainer {
     /* CLAW */
     new JoystickButton(xbox, 5).onTrue(new Claw(clawSubsystem));
 
-    new JoystickButton(joystick, 8).onTrue(new Go90Clockwise(clawSubsystem));
-    new JoystickButton(joystick, 10).onTrue(new ToStartingPosition(clawSubsystem));
-    new JoystickButton(joystick, 12).onTrue(new Go90Counterclockwise(clawSubsystem));
+    new JoystickButton(joystick, 4).onTrue(new Go90Clockwise(clawSubsystem));
+    new JoystickButton(joystick, 6).onTrue(new ToStartingPosition(clawSubsystem));
+    //new JoystickButton(joystick, 12).onTrue(new Go90Counterclockwise(clawSubsystem));
 
     new JoystickButton(joystick, 2).whileTrue(new ManualClaw(clawSubsystem, () -> joystick.getX()));
 
@@ -72,8 +76,8 @@ public class RobotContainer {
      new JoystickButton(joystick, 1).whileTrue(new PivotJoystickCommand(pivotSubsystem, ()->joystick.getY()));
 
     /* LIGHTS */
-    new JoystickButton(joystick, 6).toggleOnTrue(new Yellow(lights));
-    new JoystickButton(joystick, 4).toggleOnTrue(new Violet(lights));
+    // new JoystickButton(joystick, 6).toggleOnTrue(new Yellow(lights));
+    // new JoystickButton(joystick, 4).toggleOnTrue(new Violet(lights));
 
   }
 
@@ -84,6 +88,10 @@ public class RobotContainer {
   public void selectAuto() {
     autoChooser.setDefaultOption("Do Nothing", doNothing);
     autoChooser.addOption("Hybrid", hybrid);
+    autoChooser.addOption("Hybrid Mobility", hybridMobility);
+    autoChooser.addOption("Hybrid Balance", hybridBalance);
+    
+    autoChooser.addOption("PITCH BALANCE", pitchBalance);
 
     SmartDashboard.putData(autoChooser);
   }
