@@ -23,13 +23,13 @@ public class Camera{
 
     }
     public Camera(){ // width, height, exposure
-        this(160, 120, 2);
+        this(160, 120, 3);
     }
     public void setExposure(int value){
         wideview.setExposureManual(value); // exposure value of the front camera
     }
     public void init(){ //initializing
-        wideview = CameraServer.startAutomaticCapture(1); // 
+        wideview = CameraServer.startAutomaticCapture(); // 
         wideview.setResolution(width, height); // setting the resolution
         wideview.setExposureManual(exposure); // manually setting the exposure
         wideview.setFPS(framerateFront); // setting the framerate

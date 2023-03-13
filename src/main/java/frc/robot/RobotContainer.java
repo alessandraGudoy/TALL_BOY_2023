@@ -26,6 +26,7 @@ public class RobotContainer {
 
   //AUTONOMOUS CHOICES
   private Command doNothing = new DoNothing();
+  private Command hybrid = new Hybrid(swerveSubsystem, pivotSubsystem, clawSubsystem);
   public SendableChooser<Command> autoChooser = new SendableChooser<>();
 
   public RobotContainer() {
@@ -66,7 +67,7 @@ public class RobotContainer {
     new JoystickButton(joystick, 2).whileTrue(new ManualClaw(clawSubsystem, () -> joystick.getX()));
 
     /* PIVOT */
-     new JoystickButton(joystick, 7).onTrue(new PivotMiddleCommand(pivotSubsystem));
+     new JoystickButton(joystick, 5).onTrue(new PivotMiddleCommand(pivotSubsystem));
      new JoystickButton(joystick, 11).onTrue(new PivotLowCommand(pivotSubsystem));
      new JoystickButton(joystick, 1).whileTrue(new PivotJoystickCommand(pivotSubsystem, ()->joystick.getY()));
 
@@ -82,6 +83,7 @@ public class RobotContainer {
 
   public void selectAuto() {
     autoChooser.setDefaultOption("Do Nothing", doNothing);
+    autoChooser.addOption("Hybrid", hybrid);
 
     SmartDashboard.putData(autoChooser);
   }

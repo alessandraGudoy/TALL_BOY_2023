@@ -26,7 +26,6 @@ public class ClawSubsystem extends SubsystemBase {
 
     //  forward=open    reverse=closed
     claw = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, ClawConsts.CLAW_FORWARD_CHANNEL, ClawConsts.CLAW_REVERSE_CHANNEL);
-    claw.set(Value.kForward);
 
     //forward = open
   }
