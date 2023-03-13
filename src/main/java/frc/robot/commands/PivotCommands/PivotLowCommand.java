@@ -20,6 +20,7 @@ public class PivotLowCommand extends CommandBase {
 
   @Override
   public void execute() {
+    SmartDashboard.putString("Current Command", getName());
     SmartDashboard.putBoolean("PIVOT DONE", false);
     pivotSubsystem.newSetpoint(setpoint);
   }

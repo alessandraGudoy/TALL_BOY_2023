@@ -106,11 +106,11 @@ public class ClawSubsystem extends SubsystemBase {
   }
 
   public void openClaw(){
-    claw.set(Value.kForward);
+    claw.set(Value.kReverse);
   }
 
   public void closeClaw(){
-    claw.set(Value.kReverse);
+    claw.set(Value.kForward);
   }
 
 
