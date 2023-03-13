@@ -13,6 +13,7 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
 
   private Compressor compressor;
+  private Camera camera;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -24,6 +25,10 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     compressor = new Compressor(PneumaticsModuleType.CTREPCM);
     compressor.enableDigital();
+
+    camera = new Camera();
+    camera.init();
+
     m_robotContainer = new RobotContainer();
   }
 
