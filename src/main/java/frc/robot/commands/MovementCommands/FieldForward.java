@@ -11,14 +11,11 @@ import frc.robot.subsystems.SwerveSubsystem;
 
 public class FieldForward extends CommandBase{
     private final SwerveSubsystem swerve;
-    private final PIDController turningPID; 
     private double desiredEnc;
     
     public FieldForward(SwerveSubsystem newSwerve, double newDesiredEnc){
         swerve = newSwerve;
-        desiredEnc = newDesiredEnc; 
-        turningPID = new PIDController(0.01, 0, 0);
-        // turningPID.enableContinuousInput(-Math.PI, Math.PI); // System is circular;  Goes from -Math.PI to 0 to Math.PI
+        desiredEnc = newDesiredEnc;
 
         addRequirements(swerve);
     }
@@ -32,9 +29,7 @@ public class FieldForward extends CommandBase{
     public void execute(){
         SmartDashboard.putString("Current Command", getName());
 
-        double turningSpeed = turningPID.calculate(swerve.getYaw(), 0);
-
-        ChassisSpeeds chassisSpeeds = ChassisSpeeds.fromFieldRelativeSpeeds(AutoConsts.DRIVE_TRANSLATION_SPEED, 0, turningSpeed, swerve.getRotation2d());
+        ChassisSpeeds chassisSpeeds = ChassisSpeeds.fromFieldRelativeSpeeds(AutoConsts.DRIVE_TRANSLATION_SPEED, 0, 0, swerve.getRotation2d());
 
         // Convert chassis speeds to individual module states
         SwerveModuleState[] moduleStates = SwerveConsts.DRIVE_KINEMATICS.toSwerveModuleStates(chassisSpeeds);

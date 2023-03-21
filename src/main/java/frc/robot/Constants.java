@@ -20,7 +20,7 @@ public final class Constants {
     public static final double GEAR_RATIO = 4.71 / 1;
     public static final double STEER_GEAR_RATIO = 150 / 7; //FIXME
 
-    public static final double VOLTAGE = 9;
+    public static final double VOLTAGE = 8;
 
     /* * * SWERVE DRIVE KINEMATICS * * */
     public static final SwerveDriveKinematics DRIVE_KINEMATICS = new SwerveDriveKinematics(
