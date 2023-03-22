@@ -35,15 +35,15 @@ public class SwerveModule extends SubsystemBase{
         absoluteEncoder.setVelocityConversionFactor(SwerveConsts.TURNING_ENCODER_SPEED_CONVERSION);
 
         drivingEnc = drivingMotor.getEncoder();
-        drivingEnc.setPositionConversionFactor(SwerveConsts.DRIVE_ENCODER_ROTATION_CONVERSION);
-        drivingEnc.setVelocityConversionFactor(SwerveConsts.DRIVE_ENCODER_SPEED_CONVERSION);
+        drivingEnc.setPositionConversionFactor(1/*SwerveConsts.DRIVE_ENCODER_ROTATION_CONVERSION8*/);
+        drivingEnc.setVelocityConversionFactor(1/*SwerveConsts.DRIVE_ENCODER_SPEED_CONVERSION*/);
 
         turningPID = new PIDController(SwerveConsts.KP_TURNING, SwerveConsts.KI_TURNING, SwerveConsts.KD_TURNING);
         turningPID.enableContinuousInput(-Math.PI, Math.PI); // System is circular;  Goes from -Math.PI to 0 to Math.PI
 
         this.chassisOffset = chassisOffset;
         
-         drivingMotor.setInverted(driveReversed);
+        drivingMotor.setInverted(driveReversed);
         absoluteEncoder.setInverted(true);
 
         drivingMotor.setIdleMode(IdleMode.kBrake);

@@ -42,7 +42,7 @@ public final class Constants {
     /* * * BACK LEFT * * */
     public static final int BL_DRIVE_PORT = 2;
     public static final int BL_TURN_PORT = 6;
-    public static final double BL_OFFSET = -Math.toRadians(0); //Math.PI;
+    public static final double BL_OFFSET = -Math.PI / 2; //Math.PI;
 
     /* * * BACK RIGHT * * */
     public static final int BR_DRIVE_PORT = 3;
@@ -84,9 +84,9 @@ public final class Constants {
     public static final int PIVOT_LOWER_LIMIT = 9;
     public static final int PIVOT_UPPER_LIMIT = 8;
 
-    public static final double PIVOT_KP = 0.000015;
+    public static final double PIVOT_KP = 0.00003;
     public static final double PIVOT_KI = 0.0;//0.000001
-    public static final double PIVOT_KD = 0;
+    public static final double PIVOT_KD = 0.0;
   }
 
   public static class ClawConsts {
@@ -102,7 +102,7 @@ public final class Constants {
   }
 
   public static class AutoConsts {
-    public static final double DRIVE_TRANSLATION_SPEED = 0.15;
+    public static final double DRIVE_TRANSLATION_SPEED = 0.25;
     public static final double DRIVE_ROTATION_SPEED = 0.25;
   }
 

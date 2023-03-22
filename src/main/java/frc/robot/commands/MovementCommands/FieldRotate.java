@@ -8,17 +8,17 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.SwerveConsts;
 import frc.robot.subsystems.SwerveSubsystem;
 
-public class FieldRotateRight extends CommandBase{
+public class FieldRotate extends CommandBase{
     private final SwerveSubsystem swerve;
     private double desiredAngle; 
     private PIDController turningPID;
     private double currentError;
     private double previousError = 0;
 
-    public FieldRotateRight(SwerveSubsystem newSwerve, double newDesiredAngle){
+    public FieldRotate(SwerveSubsystem newSwerve, double newDesiredAngle){
         swerve = newSwerve;
-        desiredAngle = newDesiredAngle; 
-        turningPID = new PIDController(0.01, 0.01,0.0);
+        desiredAngle = -newDesiredAngle; 
+        turningPID = new PIDController(0.015, 0.0,0.0);
         // turningPID.enableContinuousInput(-180, 180); // System is circular;  Goes from -Math.PI to 0 to Math.PI
 
         addRequirements(swerve);
@@ -44,7 +44,6 @@ public class FieldRotateRight extends CommandBase{
         }
 
         currentError = desiredAngle - swerve.getYaw();
-        SmartDashboard.putNumber("Err", currentError);
 
         if (currentError > 0 && previousError < 0){
             turningPID.reset();
@@ -57,7 +56,7 @@ public class FieldRotateRight extends CommandBase{
 
         //ChassisSpeeds chassisSpeeds = ChassisSpeeds.fromFieldRelativeSpeeds(0, 0, turningSpeed, swerve.getRotation2d());
 
-        ChassisSpeeds chassisSpeeds = new ChassisSpeeds(0, 0, turningSpeed);
+        ChassisSpeeds chassisSpeeds = new ChassisSpeeds(0, 0, -turningSpeed);
         // Convert chassis speeds to individual module states
         SwerveModuleState[] moduleStates = SwerveConsts.DRIVE_KINEMATICS.toSwerveModuleStates(chassisSpeeds);
 

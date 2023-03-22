@@ -106,8 +106,8 @@ public class PivotSubsystem extends SubsystemBase{
         if(calcSpeed > 0.9){
             calcSpeed = 0.9;
         }
-        else if(calcSpeed < -0.9){
-            calcSpeed = -0.9;
+        else if(calcSpeed < -0.7){
+            calcSpeed = -0.7;
         }
 
         if(isUpperLimitPressed()){
