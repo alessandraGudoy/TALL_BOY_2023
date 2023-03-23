@@ -23,8 +23,7 @@ public class RobotContainer {
   public static SwerveSubsystem swerveSubsystem = new SwerveSubsystem();
   public static PivotSubsystem pivotSubsystem = new PivotSubsystem();
   public static ClawSubsystem clawSubsystem = new ClawSubsystem();
-  public static Lights lights = new Lights();
-
+  
   private XboxController xbox = new XboxController(DriverControlConsts.XBOX_CONTROLLER_PORT);
   private Joystick joystick = new Joystick(DriverControlConsts.JOYSTICK_PORT);
 
