@@ -76,7 +76,7 @@ public class RobotContainer {
      new JoystickButton(joystick, 11).onTrue(new PivotLowCommand(pivotSubsystem));
      new JoystickButton(joystick, 1).whileTrue(new PivotJoystickCommand(pivotSubsystem, ()->joystick.getY()));
 
-     new JoystickButton(xbox, 6).whileTrue(new PivotJoystickCommand(pivotSubsystem, ()->joystick.getY()));
+    //  new JoystickButton(xbox, 6).whileTrue(new PivotJoystickCommand(pivotSubsystem, ()->joystick.getY()));
 
   }
 
