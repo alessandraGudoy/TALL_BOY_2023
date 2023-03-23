@@ -55,7 +55,6 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledPeriodic() {
     LimelightHelpers.setPipelineIndex("limelight", 7);
-    RobotContainer.lights.off();
   }
 
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
