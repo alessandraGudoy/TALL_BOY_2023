@@ -34,14 +34,17 @@ public class RobotContainer {
   private Command doNothing = new DoNothing();
   private Command hybridMobility = new HybridMobility(swerveSubsystem, pivotSubsystem, clawSubsystem);
   private Command hybridBalance = new HybridBalance(swerveSubsystem, pivotSubsystem, clawSubsystem);
-  private Command forward = new FieldBackward(swerveSubsystem, 289 / 3);
+
+  private Command dropAndGo = new DropAndGo(swerveSubsystem, pivotSubsystem, clawSubsystem);
+  private Command dropAndStabilize = new DropAndStabilize(swerveSubsystem, pivotSubsystem, clawSubsystem);
+
 
   public SendableChooser<Command> autoChooser = new SendableChooser<>();
 
   public RobotContainer() {
     swerveSubsystem.setDefaultCommand(new FieldOriented(swerveSubsystem,
-        () -> -xbox.getLeftY() * 0.95,
-        () -> -xbox.getLeftX() * 0.95,
+        () -> xbox.getLeftY() * 0.95, // was negative
+        () -> xbox.getLeftX() * 0.95, // was negative
         () -> xbox.getRightX() * 0.95));
         
     selectAuto();
@@ -54,8 +57,8 @@ public class RobotContainer {
     /* SWERVE */
     new JoystickButton(xbox, 1).toggleOnTrue(
         new FieldOriented(swerveSubsystem,
-            () -> -xbox.getLeftY() * 0.35,
-            () -> -xbox.getLeftX() * 0.35,
+            () -> xbox.getLeftY() * 0.35,
+            () -> xbox.getLeftX() * 0.35,
             () -> xbox.getRightX() * 0.35));
 
     new JoystickButton(xbox, 2).toggleOnTrue(new Lock(swerveSubsystem));
@@ -64,19 +67,15 @@ public class RobotContainer {
     /* CLAW */
     new JoystickButton(xbox, 5).onTrue(new Claw(clawSubsystem));
 
-    // new JoystickButton(joystick, 4).onTrue(new Go90Clockwise(clawSubsystem));
-    new JoystickButton(xbox, 6).onTrue(new ToStartingPosition(clawSubsystem));
-    new JoystickButton(xbox, 8).onTrue(new Go90Clockwise(clawSubsystem));
+    new JoystickButton(joystick, 4).onTrue(new Go90Clockwise(clawSubsystem));
+    new JoystickButton(joystick, 6).onTrue(new ToStartingPosition(clawSubsystem));
 
     new JoystickButton(joystick, 2).whileTrue(new ManualClaw(clawSubsystem, () -> joystick.getX()));
 
     /* PIVOT */
-    //  new JoystickButton(joystick, 5).onTrue(new PivotMiddleCommand(pivotSubsystem));
-    //  new JoystickButton(joystick, 11).onTrue(new PivotLowCommand(pivotSubsystem));
+     new JoystickButton(joystick, 5).onTrue(new PivotMiddleCommand(pivotSubsystem));
+     new JoystickButton(joystick, 11).onTrue(new PivotLowCommand(pivotSubsystem));
      new JoystickButton(joystick, 1).whileTrue(new PivotJoystickCommand(pivotSubsystem, ()->joystick.getY()));
-
-     new JoystickButton(xbox, 3).onTrue(new PivotLowCommand(pivotSubsystem));
-     new JoystickButton(xbox, 4).onTrue(new PivotMiddleCommand(pivotSubsystem));
 
      new JoystickButton(xbox, 6).whileTrue(new PivotJoystickCommand(pivotSubsystem, ()->joystick.getY()));
 
@@ -90,7 +89,9 @@ public class RobotContainer {
     autoChooser.setDefaultOption("Do Nothing", doNothing);
     autoChooser.addOption("Hybrid Mobility", hybridMobility);
     autoChooser.addOption("Hybrid Balance", hybridBalance);
-    autoChooser.addOption("Forward", forward);
+
+    autoChooser.addOption("Drop and Go", dropAndGo);
+    autoChooser.addOption("Drop and Stabilize", dropAndStabilize);
 
     SmartDashboard.putData(autoChooser);
   }
