@@ -157,6 +157,7 @@ public class SwerveSubsystem extends SubsystemBase {
     public void periodic() {
         SmartDashboard.putNumber("[S] Yaw", getYaw());
         SmartDashboard.putNumber("[S] Pitch", getPitch());
+        SmartDashboard.putNumber("[S] Roll", getRoll());
         SmartDashboard.putNumber("[S] Timer Class", Timer.getMatchTime());
     }
 }
