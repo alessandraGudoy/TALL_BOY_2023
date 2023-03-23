@@ -23,7 +23,7 @@ public class RobotContainer {
   public static SwerveSubsystem swerveSubsystem = new SwerveSubsystem();
   public static PivotSubsystem pivotSubsystem = new PivotSubsystem();
   public static ClawSubsystem clawSubsystem = new ClawSubsystem();
-  
+
   private XboxController xbox = new XboxController(DriverControlConsts.XBOX_CONTROLLER_PORT);
   private Joystick joystick = new Joystick(DriverControlConsts.JOYSTICK_PORT);
 
@@ -67,7 +67,7 @@ public class RobotContainer {
     new JoystickButton(xbox, 5).onTrue(new Claw(clawSubsystem));
 
     new JoystickButton(joystick, 4).onTrue(new Go90Clockwise(clawSubsystem));
-    new JoystickButton(joystick, 6).onTrue(new ToStartingPosition(clawSubsystem));
+    new JoystickButton(joystick, 6).onTrue(new Go90Counterclockwise(clawSubsystem));
 
     new JoystickButton(joystick, 2).whileTrue(new ManualClaw(clawSubsystem, () -> joystick.getX()));
 
