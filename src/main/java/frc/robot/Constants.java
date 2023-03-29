@@ -42,7 +42,7 @@ public final class Constants {
     /* * * BACK LEFT * * */
     public static final int BL_DRIVE_PORT = 2;
     public static final int BL_TURN_PORT = 6;
-    public static final double BL_OFFSET = -Math.PI / 2; //Math.PI;
+    public static final double BL_OFFSET = -Math.PI; //Math.PI;
 
     /* * * BACK RIGHT * * */
     public static final int BR_DRIVE_PORT = 3;

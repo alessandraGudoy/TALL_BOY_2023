@@ -33,13 +33,13 @@ public class Camera{
     public void init(){ //initializing
         wideview = CameraServer.startAutomaticCapture(); // 
         wideview.setResolution(width, height); // setting the resolution
-        wideview.setExposureManual(exposure); // manually setting the exposure
-        wideview.setFPS(framerateFront); // setting the framerate
+        wideview.setExposureManual(25); // manually setting the exposure
+        wideview.setFPS(framerateFront); // setting 50the framerate
         wideview.setWhiteBalanceHoldCurrent(); // white balance of the camera
 
         logitech = CameraServer.startAutomaticCapture(); // 
         logitech.setResolution(width, height); // setting the resolution
-        logitech.setExposureManual(exposure); // manually setting the exposure
+        logitech.setExposureManual(25); // manually setting the exposure
         logitech.setFPS(framerateFront); // setting the framerate
         logitech.setWhiteBalanceHoldCurrent(); // white balance of the camera
 
